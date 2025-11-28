@@ -869,3 +869,20 @@ void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Lase
 	}
 }
 
+void updateExplosions(float dt, Explosion explosions[]) {
+	for (int i = 0; i < max_explosions; i++) {
+		if (explosions[i].active) {
+			explosions[i].frameTimer += dt;
+
+			if (explosions[i].frameTimer >= 0.05f) {
+				explosions[i].frameTimer = 0.0f;
+				explosions[i].currentFrame++;
+
+				if (explosions[i].currentFrame >= explosion_frames_number) {
+					explosions[i].active = false;
+					explosions[i].currentFrame = 0;
+				}
+			}
+		}
+	}
+}
