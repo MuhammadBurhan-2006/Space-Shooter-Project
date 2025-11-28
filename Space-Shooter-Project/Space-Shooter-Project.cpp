@@ -165,7 +165,7 @@ int main() {
     bigBoss.x = window_width / 2 - bigBoss.width / 2;
     bigBoss.y = -300;
     bigBoss.speed = 3.0f;
-    bigBoss.maxHp = 500;
+    bigBoss.maxHp = 3500;
     bigBoss.hp = bigBoss.maxHp;
     bigBoss.active = false;
     bigBoss.entering = false;
@@ -214,12 +214,15 @@ int main() {
                 state_game_over || current_game_state == state_game_won) {
                 handleMenuInput();
             }
+            // Main loop ke andar is part ko dhoonden aur replace karein:
             if (gameRunning && current_game_state != State_paused) {
-                if (inTransition) handleLevelTransition(ship, bigBoss, enemies, lasers);
+                if (inTransition) {
+                    // Yahan naya function call ayega:
+                    handleLevelTransition(ship, bigBoss, enemies, lasers, bossLasers, explosions);
+                }
                 else {
                     handlePlayerInput(ship, assistShip, lasers);
-                    updateGameLogic(dt, ship, assistShip, bigBoss, enemies, lasers, bossLasers,
-                        explosions);
+                    updateGameLogic(dt, ship, assistShip, bigBoss, enemies, lasers, bossLasers, explosions);
                 }
             }
         }
