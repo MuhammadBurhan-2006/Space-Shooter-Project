@@ -245,7 +245,7 @@ void loadAssets(void) {
     assistTexture = LoadTexture("assist.png");
     bossTexture = LoadTexture("boss.png");
     bossLaserTexture = LoadTexture("boss_laser.png");
-    shootSound = LoadSound("ahh-shoot.mp3");
+    shootSound = LoadSound("shoot.mp3");
     explosionSound = LoadSound("explosion2.mp3");
     if (explosionTexture.width > 0) {
         frameWidth = (float)(explosionTexture.width / explosion_frames_number);
