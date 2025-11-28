@@ -468,7 +468,7 @@ void handleTransitions(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, En
                 gameRunning = false;
                 break;
 
-                // Corrected variable name as requested
+                
             case Transition_to_resume:
                 break;
 
