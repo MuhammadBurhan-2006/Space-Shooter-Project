@@ -573,3 +573,54 @@ void handlePlayerInput(Spaceship& ship, Spaceship& assistShip, Laser lasers[]) {
 }
 
 
+void handleTransitions(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemies[], Laser lasers[], BossLaser bossLasers[]) {
+	if (pendingTransition == Transition_none) return;
+
+	float fadeSpeed = 0.05f;
+
+	if (isFading_out) {
+		fadeAlpha += fadeSpeed;
+		if (fadeAlpha >= 1.0f) {
+			fadeAlpha = 1.0f;
+			isFading_out = false;
+
+			switch (pendingTransition) {
+			case Transition_at_gamestart:
+
+				resetGame(ship, assistShip, bigBoss, enemies, lasers, bossLasers);
+
+
+				current_game_state = state_title;
+				gameRunning = true;
+				break;
+
+			case Transition_to_instructions:
+				current_game_state = state_instructions;
+				break;
+
+			case Transition_to_title:
+				current_game_state = state_title;
+				menu_selection = 0;
+				gameRunning = false;
+				break;
+
+				// Corrected variable name as requested
+			case Transition_to_resume:
+				break;
+
+			case Transition_quit_to_title:
+				gameRunning = false;
+				current_game_state = state_title;
+				menu_selection = 0;
+				break;
+			}
+		}
+	}
+	else {
+		fadeAlpha -= fadeSpeed;
+		if (fadeAlpha <= 0.0f) {
+			fadeAlpha = 0.0f;
+			pendingTransition = Transition_none;
+		}
+	}
+}
