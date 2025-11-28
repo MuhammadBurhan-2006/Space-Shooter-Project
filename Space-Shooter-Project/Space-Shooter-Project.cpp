@@ -720,7 +720,7 @@ void updateEnemyLogic(Spaceship& ship, Enemy enemies[]) {
     }
 }
 
-void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Laser lasers[]) {
+void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Laser lasers[], BossLaser bossLasers[], Explosion explosions[]) {
     float dt = GetFrameTime();
     transitionTimer -= dt;
 
@@ -731,10 +731,24 @@ void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Lase
     if (ship.x < targetX) ship.x += 2.0f;
     if (ship.x > targetX) ship.x -= 2.0f;
 
-    // NO ANIMATION HERE AS REQUESTED
-
+    
     if (transitionTimer <= 0.0f) {
         inTransition = false;
+
+        
+        for (int i = 0; i < max_lasers; i++) lasers[i].active = false;
+
+       
+        for (int i = 0; i < max_boss_lasers; i++) bossLasers[i].active = false;
+
+        
+        for (int i = 0; i < max_explosions; i++) {
+            explosions[i].active = false;
+            explosions[i].currentFrame = 0; 
+        }
+      
+
+        shootTimer = 0.5f;
 
         // Activate Boss if level 11
         if (level == 11) {
@@ -745,6 +759,7 @@ void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Lase
         }
     }
 }
+
 
 void updateExplosions(float dt, Explosion explosions[]) {
     for (int i = 0; i < max_explosions; i++) {
