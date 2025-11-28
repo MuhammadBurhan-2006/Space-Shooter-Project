@@ -1,0 +1,16 @@
+﻿  Space-Shooter-Project.cpp
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(91,20): warning C4101: 'explosionSound': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(90,3): warning C4101: 'bossTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(89,41): warning C4101: 'laserTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(89,73): warning C4101: 'assistTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(89,12): warning C4101: 'playerTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(90,16): warning C4101: 'bossLaserTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(89,55): warning C4101: 'explosionTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(80,73): warning C4101: 'frameWidth': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(88,7): warning C4101: 'stars': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(91,8): warning C4101: 'shootSound': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(89,27): warning C4101: 'enemyTexture': unreferenced local variable
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(93,5): error C2084: function 'int main(void)' already has a body
+      C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(6,5):
+      see previous definition of 'main'
+  
