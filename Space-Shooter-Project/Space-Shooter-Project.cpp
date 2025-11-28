@@ -821,10 +821,10 @@ void DrawMenu(void) {
         DrawText(TextFormat("STATS (HIGH: %d)", highScore), window_width / 2 - 150, startY +
             spacing * 2, 30, GRAY);
 
-        // Corrected Quit Game Logic (Menu Selection Fix)
-        Color c2 = (menu_selection == 2) ? GREEN : MAGENTA; // Fixed: replaced window_width with menu_selection
+       
+        Color c2 = (menu_selection == 2) ? GREEN : MAGENTA; 
         DrawText("QUIT GAME", window_width / 2 - 150, startY + spacing * 3, 30, c2);
-        if (menu_selection == 2) DrawText(">", window_width / 2 - 180, startY + spacing * 3, 30, GREEN); // Fixed here too
+        if (menu_selection == 2) DrawText(">", window_width / 2 - 180, startY + spacing * 3, 30, GREEN); 
 
         DrawText("Use UP/DOWN Arrows to Move, ENTER to Select", 250, 800, 20, LIGHTGRAY);
     }
@@ -881,6 +881,7 @@ void DrawMenu(void) {
         DrawText("PRESS [ENTER] TO RETURN TO TITLE", 250, 600, 20, DARKGRAY);
     }
 }
+
 void DrawTransition(Spaceship& ship) {
     if (level == 11) {
         DrawText("WARNING!", 350, 250, 50, RED);
