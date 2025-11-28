@@ -3,7 +3,7 @@
 #include<fstream>
 #include<cstdlib>
 using namespace std;
-int main() {
+
 	//----Constans 
 	const int window_height = 1000;
 	const int window_width = 1000;
@@ -89,7 +89,7 @@ int main() {
 	Texture2D playerTexture, enemyTexture, laserTexture, explosionTexture, assistTexture,
 		bossTexture, bossLaserTexture;
 	Sound shootSound, explosionSound;
-}
+
 int main() {
 
 }
