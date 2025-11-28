@@ -109,7 +109,7 @@ void resetGame(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enem
     lasers[], BossLaser bossLasers[]);
 void startLevel(int lvl);
 void updateStars(void);
-void handleMenuInput(void);
+
 void handlePlayerInput(Spaceship& ship, Spaceship& assistShip, Laser lasers[]);
 void updateEnemyLogic(Spaceship& ship, Enemy enemies[]);
 void updateGameLogic(float dt, Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemies[], Laser lasers[], BossLaser bossLasers[], Explosion explosions[]);

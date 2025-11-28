@@ -1,6 +1,8 @@
 ﻿  Space-Shooter-Project.cpp
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(378,6): error C2084: function 'void handlePlayerInput(Spaceship &,Spaceship &,Laser [])' already has a body
+      C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(317,6):
+      see previous definition of 'handlePlayerInput'
+  
 C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(791,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(791,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(791,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Space-Shooter-Project.vcxproj -> C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\x64\Debug\Space-Shooter-Project.exe
