@@ -803,3 +803,69 @@ void updateGameLogic(float dt, Spaceship& ship, Spaceship& assistShip, Boss& big
 
 
 
+void updateEnemyLogic(Spaceship& ship, Enemy enemies[]) {
+	//  Spawning Logic 
+	// Only spawn if we haven't reached the kill target for this level
+	if (enemies_spawned_count < enemies_to_Kill) {
+		// Random chance to spawn an enemy each frame (adjust '2' to change spawn rate)
+		if (GetRandomValue(0, 100) < 2) {
+			for (int i = 0; i < max_enemies; i++) {
+				if (!enemies[i].active) {
+					enemies[i].active = true;
+					// Set basic enemy stats
+					enemies[i].width = 50;
+					enemies[i].height = 50;
+					enemies[i].hp = 1;
+
+					// Random X position within window bounds
+					enemies[i].x = (float)GetRandomValue(0, window_width - 50);
+
+					// Start slightly above the screen
+					enemies[i].y = -100.0f;
+
+					// Random speed
+					enemies[i].speed = (float)GetRandomValue(20, 50) / 10.0f;
+
+					enemies_spawned_count++;
+					break; // Spawn one at a time
+				}
+			}
+		}
+	}
+
+	// Movement Logic 
+	for (int i = 0; i < max_enemies; i++) {
+		if (enemies[i].active) {
+			enemies[i].y += enemies[i].speed;
+
+			// Check if enemy passed the bottom of the screen
+			if (enemies[i].y > window_height) {
+				enemies[i].active = false;
+			}
+		}
+	}
+}
+
+void handleLevelTransition(Spaceship& ship, Boss& bigBoss, Enemy enemies[], Laser lasers[]) {
+	float dt = GetFrameTime();
+	transitionTimer -= dt;
+
+	// Calculate center target based on new window_width
+	float targetX = window_width / 2 - ship.width / 2;
+
+	// Smoothly move ship to center
+	if (ship.x < targetX) ship.x += 2.0f;
+	if (ship.x > targetX) ship.x -= 2.0f;
+
+	if (transitionTimer <= 0.0f) {
+		inTransition = false;
+
+		// Activate Boss if level 11
+		if (level == 11) {
+			bigBoss.active = true;
+			bigBoss.entering = true;
+			bigBoss.y = -bigBoss.height;
+		}
+	}
+}
+
