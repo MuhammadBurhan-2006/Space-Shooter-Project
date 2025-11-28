@@ -24,7 +24,7 @@ using namespace std;
 	const int Transition_at_gamestart = 1;
 	const int Transition_to_instructions = 2;
 	const int Transition_to_title = 3;
-	const int TTransition_to_resume = 4;
+	const int Transition_to_resume = 4;
 	const int Transition_quit_to_title = 5;
 	//--Structs
 	struct star {
@@ -89,7 +89,39 @@ using namespace std;
 	Texture2D playerTexture, enemyTexture, laserTexture, explosionTexture, assistTexture,
 		bossTexture, bossLaserTexture;
 	Sound shootSound, explosionSound;
+	// --- PROTOTYPE DECLERATION --- 
+	void loadAssets(void);
+	void unloadAllAssets(void);
 
 int main() {
 
+}
+void loadAssets(void) {
+	playerTexture = LoadTexture("player.png");
+	enemyTexture = LoadTexture("enemy.png");
+	laserTexture = LoadTexture("laser.png");
+	explosionTexture = LoadTexture("explosion.png");
+	assistTexture = LoadTexture("assist.png");
+	bossTexture = LoadTexture("boss.png");
+	bossLaserTexture = LoadTexture("boss_laser.png");
+	shootSound = LoadSound("ahh-shoot.mp3");
+	explosionSound = LoadSound("explosion2.mp3");
+	if (explosionTexture.width > 0) {
+		frameWidth = (float)(explosionTexture.width / explosion_frames_number);
+	}
+	else {
+		frameWidth = 20.0f;
+	}
+}
+
+void unloadAllAssets(void) {
+	UnloadTexture(playerTexture); 
+	UnloadTexture(enemyTexture); 
+	UnloadTexture(laserTexture);
+	UnloadTexture(explosionTexture); 
+	UnloadTexture(assistTexture);
+	UnloadTexture(bossTexture);
+	UnloadTexture(bossLaserTexture); 
+	UnloadSound(shootSound);
+	UnloadSound(explosionSound);
 }
