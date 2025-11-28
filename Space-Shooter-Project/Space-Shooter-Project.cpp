@@ -314,7 +314,6 @@ void updateStars(void) {
 }
 
 
-
 void handleMenuInput(void) {
 
     if (pendingTransition != Transition_none) return;
