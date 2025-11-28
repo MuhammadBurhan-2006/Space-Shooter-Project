@@ -98,7 +98,87 @@ using namespace std;
 		lasers[], BossLaser bossLasers[]);
 	void startLevel(int lvl);
 int main() {
+	InitWindow(window_width, window_height, "C9----Space Shooter (Group Project)");
+	SetTargetFPS(60);
+	InitAudioDevice();
+	loadAssets();
+	loadHighScore();
+	// Initialization Logic 
+	for (int i = 0; i < star_count; i++) {
+		stars[i].x = GetRandomValue(0, WINDOW_WIDTH);
+		stars[i].y = GetRandomValue(0, WINDOW_HEIGHT);
+		stars[i].speed = GetRandomValue(50, 200) / 100.0f;
+		stars[i].size = GetRandomValue(1, 3);
+		stars[i].color = WHITE;
+	}
+	Spaceship ship = { window_width / 2 - 30.0f, window_height - 100.0f, 60.0f, 80.0f, 9.0f
+	};
+	Spaceship assistShip = { -100.0f, 0.0f, 60.0f, 80.0f, 9.0f };
+	Boss bigBoss;
+	bigBoss.width = (float)bossTexture.width > 0 ? (float)bossTexture.width : 100;
+	bigBoss.height = (float)bossTexture.height > 0 ? (float)bossTexture.height : 100;
+	bigBoss.x = window_width / 2 - bigBoss.width / 2;
+	bigBoss.y = -300; 
+	bigBoss.speed = 3.0f; 
+	bigBoss.maxHp = 500; 
+	bigBoss.hp = bigBoss.maxHp;
+	bigBoss.active = false; 
+	bigBoss.entering = false; 
+	bigBoss.moveDir = 1; 
+	bigBoss.shootTimer = 0.0f;
+	BossLaser bossLasers[max_boss_lasers];
+	for (int i = 0; i < max_boss_lasers; i++) {
+		bossLasers[i].active = false; bossLasers[i].speed = 7.0f;
+		bossLasers[i].width = 20; bossLasers[i].height = 50;
+	}
+	Laser lasers[max_lasers];
+	for (int i = 0; i < max_lasers; i++) { 
+		lasers[i].active = false; lasers[i].speed = 12.0f; 
+	}
+	Enemy enemies[max_enemies];
+	for (int i = 0; i < max_enemies; i++) {
+		enemies[i].active = false; 
+		enemies[i].width = 50;
+		enemies[i].height = 50; 
+		enemies[i].speed = 1.0f; 
+		enemies[i].hp = 1; 
+		enemies[i].maxHp = 1;
+	}
+	Explosion explosions[max_explosions];
+	for (int i = 0; i < max_explosions; i++) {
+		explosions[i].active = false;
+		explosions[i].currentFrame = 0; 
+		explosions[i].frameTimer = 0.0f;
+	}
+	// MAIN GAME LOOP 
+	while (!WindowShouldClose() && !exitGameRequest) {
+		float dt = GetFrameTime();
+		UpdateStars();
+		if (score > highScore) highScore = score;
+		HandleTransitions(ship, assistShip, bigBoss, enemies, lasers, bossLasers);
 
+		if (pendingTransition == Transition_none) {
+			if (!gameRunning || currentGameState == State_paused || currentGameState ==
+				state_game_over || currentGameState == STATE_VICTORY) {
+				HandleMenuInput();
+			}
+			if (gameRunning && currentGameState != STATE_PAUSED) {
+				if (inTransition) HandleLevelTransition(ship, bigBoss, enemies, lasers);
+				else {
+					HandlePlayerInput(ship, assistShip, lasers);
+					UpdateGameLogic(dt, ship, assistShip, bigBoss, enemies, lasers, bossLasers,
+						explosions);
+				}
+			}
+		}
+		DrawGame(ship, assistShip, bigBoss, enemies, lasers, bossLasers, explosions);
+		if (!gameRunning && score > 0) SaveHighScore();
+	}
+
+	UnloadAllAssets();
+	CloseAudioDevice();
+	CloseWindow();
+	return 0;
 }
 void loadAssets(void) {
 	playerTexture = LoadTexture("player.png");
