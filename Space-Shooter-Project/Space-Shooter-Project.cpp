@@ -175,7 +175,7 @@ int main() {
 		if (!gameRunning && score > 0) SaveHighScore();
 	}
 
-	UnloadAllAssets();
+	unloadAllAssets();
 	CloseAudioDevice();
 	CloseWindow();
 	return 0;
