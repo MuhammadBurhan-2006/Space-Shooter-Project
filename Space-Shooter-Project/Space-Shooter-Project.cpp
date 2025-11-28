@@ -798,7 +798,10 @@ void DrawGame(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemi
     if (pendingTransition != Transition_none) DrawRectangle(0, 0, window_width,
         window_height, Fade(BLACK, fadeAlpha));
     EndDrawing();
-}void DrawMenu(void) {
+}
+
+
+void DrawMenu(void) {
     if (current_game_state == state_title) {
         Rectangle rec = { window_width / 2.0f, window_height / 2.0f, 600, 500 };
         Vector2 origin = { 300, 250 };
