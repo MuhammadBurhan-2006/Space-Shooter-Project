@@ -314,83 +314,67 @@ void updateStars(void) {
 }
 
 
-void handleMenuInput(void) {
+void handlePlayerInput(Spaceship& ship, Spaceship& assistShip, Laser lasers[]) {
+    float dt = GetFrameTime();
 
-    if (pendingTransition != Transition_none) return;
+    // Movement Logic
+    if (IsKeyDown(KEY_LEFT)) ship.x -= ship.speed;
+    if (IsKeyDown(KEY_RIGHT)) ship.x += ship.speed;
 
-    // Pause Toggle Logic
-    if (IsKeyPressed(KEY_P) && gameRunning && current_game_state != State_paused) {
-        current_game_state = State_paused;
-        menu_selection = 0;
-        return;
+    // Boundary Checks (using our new window_width)
+    if (ship.x < 0) ship.x = 0;
+    if (ship.x > window_width - ship.width) ship.x = window_width - ship.width;
+
+    // Assistant Ship Logic
+    if (IsKeyPressed(KEY_H)) assistActive = !assistActive;
+
+    if (assistActive) {
+        assistShip.x = ship.x + 80;
+        assistShip.y = ship.y;
+
+        // Keep assist ship within screen bounds
+        if (assistShip.x > window_width - assistShip.width) {
+            assistShip.x = window_width - assistShip.width;
+            ship.x = assistShip.x - 80;
+        }
     }
 
-    //  STATE TITLE MENU 
-    if (current_game_state == state_title) {
-        if (IsKeyPressed(KEY_DOWN)) {
-            menu_selection++;
-            if (menu_selection > 2) menu_selection = 0;
-        }
-        if (IsKeyPressed(KEY_UP)) {
-            menu_selection--;
-            if (menu_selection < 0) menu_selection = 2;
+    // Shooting Logic
+    shootTimer -= dt;
+    if (IsKeyDown(KEY_SPACE) && shootTimer <= 0.0f) {
+        bool fired = false;
+
+        // Player Laser
+        for (int i = 0; i < max_lasers; i++) {
+            if (!lasers[i].active) {
+                lasers[i].active = true;
+                lasers[i].x = ship.x + ship.width / 2 - 10;
+                lasers[i].y = ship.y;
+                fired = true;
+                break;
+            }
         }
 
-        if (IsKeyPressed(KEY_ENTER)) {
-            if (menu_selection == 0) {
-                pendingTransition = Transition_at_gamestart;
-                isFading_out = true;
+        // Assist Laser
+        if (assistActive) {
+            for (int i = 0; i < max_lasers; i++) {
+                if (!lasers[i].active) {
+                    lasers[i].active = true;
+                    lasers[i].x = assistShip.x + assistShip.width / 2 - 10;
+                    lasers[i].y = assistShip.y;
+                    fired = true;
+                    break;
+                }
             }
-            else if (menu_selection == 1) {
-                pendingTransition = Transition_to_instructions;
-                isFading_out = true;
-            }
-            else if (menu_selection == 2) {
-                exitGameRequest = true;
-            }
-        }
-    }
-    //  STATE INSTRUCTIONS 
-    else if (current_game_state == state_instructions) {
-        if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_ESCAPE)) {
-            pendingTransition = Transition_to_title;
-            isFading_out = true;
-        }
-    }
-    //  STATE PAUSED 
-    else if (current_game_state == State_paused) {
-        if (IsKeyPressed(KEY_DOWN)) {
-            menu_selection++;
-            if (menu_selection > 2) menu_selection = 0;
-        }
-        if (IsKeyPressed(KEY_UP)) {
-            menu_selection--;
-            if (menu_selection < 0) menu_selection = 2;
         }
 
-        if (IsKeyPressed(KEY_ENTER)) {
-            if (menu_selection == 0) {
-                pendingTransition = Transition_to_resume;
-                isFading_out = true;
-            }
-            else if (menu_selection == 1) {
-                pendingTransition = Transition_at_gamestart;
-                isFading_out = true;
-            }
-            else if (menu_selection == 2) {
-                pendingTransition = Transition_quit_to_title;
-                isFading_out = true;
-            }
-        }
-    }
-    //  STATE GAME OVER OR VICTORY 
-    else if (current_game_state == state_game_over || current_game_state == state_game_won) {
-        if (IsKeyPressed(KEY_ENTER)) {
-            pendingTransition = Transition_to_title;
-            isFading_out = true;
+        if (fired) {
+            shootTimer = shootCooldown;
+            PlaySound(shootSound);
         }
     }
 }
+
 void handlePlayerInput(Spaceship& ship, Spaceship& assistShip, Laser lasers[]) {
     float dt = GetFrameTime();
 
