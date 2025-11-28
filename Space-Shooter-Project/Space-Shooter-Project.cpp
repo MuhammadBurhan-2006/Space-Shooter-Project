@@ -6,7 +6,7 @@ using namespace std;
 
 
 //----Constants 
-const int window_height = 1000;
+const int window_height = 900;
 const int window_width = 1000;
 const int star_count = 200;
 const int max_boss_lasers = 20;
@@ -143,8 +143,7 @@ int main() {
 		stars[i].size = GetRandomValue(1, 3);
 		stars[i].color = WHITE;
 	}
-	Spaceship ship = { window_width / 2 - 30.0f, window_height - 100.0f, 60.0f, 80.0f, 9.0f
-	};
+	Spaceship ship = { window_width / 2 - 30.0f, window_height - 100.0f, 60.0f, 80.0f, 9.0f};
 	Spaceship assistShip = { -100.0f, 0.0f, 60.0f, 80.0f, 9.0f };
 	Boss bigBoss;
 	bigBoss.width = (float)bossTexture.width > 0 ? (float)bossTexture.width : 100;
@@ -178,8 +177,8 @@ int main() {
 	for (int i = 0; i < max_lasers; i++) {
 		lasers[i].active = false; lasers[i].speed = 12.0f;
 	}
-	Enemy enemies[max_enemies];
-	// --- YE CODE PASTE KAREIN (REPLACEMENT) ---
+	
+
 	Enemy enemies[max_enemies];
 	for (int i = 0; i < max_enemies; i++) {
 		enemies[i].active = false;
@@ -269,27 +268,17 @@ int main() {
 			}
 	
 
-void unloadAllAssets(void) {
-
-	UnloadTexture(playerTexture);
-	UnloadTexture(enemyTexture);
-	UnloadTexture(laserTexture);
-	UnloadTexture(explosionTexture);
-	UnloadTexture(assistTexture);
-	UnloadTexture(bossTexture);
-	UnloadTexture(bossLaserTexture);
-
-	UnloadTexture(playerTexture); 
-	UnloadTexture(enemyTexture); 
-	UnloadTexture(laserTexture);
-	UnloadTexture(explosionTexture); 
-	UnloadTexture(assistTexture);
-	UnloadTexture(bossTexture);
-	UnloadTexture(bossLaserTexture); 
-
-	UnloadSound(shootSound);
-	UnloadSound(explosionSound);
-}
+			void unloadAllAssets(void) {
+				UnloadTexture(playerTexture);
+				UnloadTexture(enemyTexture);
+				UnloadTexture(laserTexture);
+				UnloadTexture(explosionTexture);
+				UnloadTexture(assistTexture);
+				UnloadTexture(bossTexture);
+				UnloadTexture(bossLaserTexture);
+				UnloadSound(shootSound);
+				UnloadSound(explosionSound);
+			}
 
 void loadHighScore(void) {
 	ifstream infile("savegame.dat");

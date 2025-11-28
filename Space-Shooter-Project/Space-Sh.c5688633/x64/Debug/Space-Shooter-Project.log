@@ -1,11 +1,11 @@
 ﻿  Space-Shooter-Project.cpp
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(136,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(137,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(139,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(140,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(340,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(813,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(813,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(813,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(136,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(137,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(139,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(140,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(328,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(801,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(801,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\Space-Shooter-Project.cpp(801,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Space-Shooter-Project.vcxproj -> C:\Users\abdul\source\repos\Space-Shooter-Project\Space-Shooter-Project\x64\Debug\Space-Shooter-Project.exe
