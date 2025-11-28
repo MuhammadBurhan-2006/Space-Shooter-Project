@@ -94,7 +94,9 @@ using namespace std;
 	void unloadAllAssets(void);
 	void loadHighScore(void);
 	void saveHighScore(void);
-
+	void resetGame(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemies[], Laser
+		lasers[], BossLaser bossLasers[]);
+	void startLevel(int lvl);
 int main() {
 
 }
@@ -134,4 +136,21 @@ void loadHighScore(void) {
 void saveHighScore(void) {
 	ofstream outfile("savegame.dat");
 	if (outfile.is_open()) { outfile << highScore; outfile.close(); }
+}
+void startLevel(int lvl) {
+	level = lvl;
+	enemies_to_Kill = 5 + (level * 5);
+	enemies_killed = 0;
+	enemies_spawned_count = 0;
+}
+void resetGame(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemies[], Laser
+	lasers[], BossLaser bossLasers[]) {
+	gameRunning = true; gameWon = false; score = 0; lives = 3;
+	StartLevel(1);
+	inTransition = false; assistActive = false; shootTimer = 0.0f; transitionTimer = 0.0f;
+	bigBoss.active = false; bigBoss.hp = bigBoss.maxHp; bigBoss.y = -300;
+	for (int i = 0; i < max_enemies; i++) enemies[i].active = false;
+	for (int i = 0; i < max_lasers; i++) lasers[i].active = false;
+	for (int i = 0; i < max_boss_lasers; i++) bossLasers[i].active = false;
+	PlaySound(shootSound);
 }
