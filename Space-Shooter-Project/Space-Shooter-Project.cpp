@@ -285,7 +285,6 @@ void startLevel(int lvl) {
     enemies_spawned_count = 0;
 }
 
-
 void resetGame(Spaceship& ship, Spaceship& assistShip, Boss& bigBoss, Enemy enemies[], Laser
     lasers[], BossLaser bossLasers[]) {
     gameRunning = true; gameWon = false; score = 0; lives = 3;
